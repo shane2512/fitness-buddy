@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import TiltedCard from "@/components/TiltedCard";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
@@ -122,18 +122,27 @@ export const Workouts = () => {
       {/* Category Grid */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {workoutCategories.map(({ id, name, icon: Icon, color }) => (
-          <Card
+          <TiltedCard
             key={id}
-            className={`cursor-pointer transition-all hover:shadow-md ${
+            containerHeight="120px"
+            imageHeight="120px"
+            imageWidth="100%"
+            captionText={name}
+            showMobileWarning={false}
+            scaleOnHover={1.1}
+            rotateAmplitude={6}
+            className={`cursor-pointer ${
               selectedCategory === id ? "ring-2 ring-primary" : ""
             }`}
-            onClick={() => setSelectedCategory(selectedCategory === id ? null : id)}
           >
-            <CardContent className="flex flex-col items-center justify-center p-6">
+            <div 
+              className="flex flex-col items-center justify-center p-6 h-full"
+              onClick={() => setSelectedCategory(selectedCategory === id ? null : id)}
+            >
               <Icon className={`h-8 w-8 mb-2 ${color}`} />
-              <span className="text-sm font-medium text-center">{name}</span>
-            </CardContent>
-          </Card>
+              <span className="text-sm font-medium text-center text-white">{name}</span>
+            </div>
+          </TiltedCard>
         ))}
       </div>
 
@@ -180,35 +189,44 @@ export const Workouts = () => {
       {/* Workout List */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filteredWorkouts.map((workout) => (
-          <Card key={workout.id} className="hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <div className="flex items-start justify-between">
-                <CardTitle className="text-lg">{workout.title}</CardTitle>
+          <TiltedCard 
+            key={workout.id}
+            containerHeight="280px"
+            imageHeight="280px"
+            imageWidth="100%"
+            captionText={workout.title}
+            showMobileWarning={false}
+            scaleOnHover={1.05}
+            rotateAmplitude={8}
+          >
+            <div className="p-6 h-full flex flex-col">
+              <div className="flex items-start justify-between mb-4">
+                <h3 className="text-lg font-semibold text-white">{workout.title}</h3>
                 <Badge className={getDifficultyColor(workout.difficulty)}>
                   {workout.difficulty}
                 </Badge>
               </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-muted-foreground" />
-                    <span>{workout.duration} min</span>
+              <div className="space-y-4 flex-1">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-gray-400" />
+                      <span className="text-white">{workout.duration} min</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Zap className="h-4 w-4 text-gray-400" />
+                      <span className="text-white">{workout.calories} cal</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Zap className="h-4 w-4 text-muted-foreground" />
-                    <span>{workout.calories} cal</span>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-400">Equipment:</span>
+                    <span className="font-medium text-white">{workout.equipment}</span>
                   </div>
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Equipment:</span>
-                  <span className="font-medium">{workout.equipment}</span>
                 </div>
               </div>
-              <Button className="w-full">Start Workout</Button>
-            </CardContent>
-          </Card>
+              <Button className="w-full mt-4">Start Workout</Button>
+            </div>
+          </TiltedCard>
         ))}
       </div>
 

@@ -14,11 +14,11 @@ export const Navigation = () => {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:block border-b bg-card">
+      <nav className="hidden md:block border-b bg-gray-900 border-gray-700">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-8">
-              <h1 className="text-xl font-semibold text-foreground">Fitness Buddy</h1>
+              <h1 className="text-xl font-semibold text-white">Fitness Buddy</h1>
               <div className="flex space-x-6">
                 {navItems.map(({ to, icon: Icon, label }) => (
                   <NavLink
@@ -28,8 +28,8 @@ export const Navigation = () => {
                       cn(
                         "flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                         isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                          ? "bg-primary text-white"
+                          : "text-gray-300 hover:text-white hover:bg-gray-800"
                       )
                     }
                   >
@@ -44,7 +44,7 @@ export const Navigation = () => {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-card border-t z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 z-50">
         <div className="flex items-center justify-around h-16">
           {navItems.map(({ to, icon: Icon, label }) => (
             <NavLink
@@ -55,7 +55,7 @@ export const Navigation = () => {
                   "flex flex-col items-center space-y-1 px-2 py-2 rounded-lg text-xs font-medium transition-colors",
                   isActive
                     ? "text-primary"
-                    : "text-muted-foreground"
+                    : "text-gray-300"
                 )
               }
             >

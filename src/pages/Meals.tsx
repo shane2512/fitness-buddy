@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import TiltedCard from "@/components/TiltedCard";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
@@ -201,72 +201,80 @@ export const Meals = () => {
       {/* Meal Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredMeals.map((meal) => (
-          <Card key={meal.id} className="hover:shadow-md transition-shadow">
-            <div className="relative">
-              <img 
-                src={meal.image} 
-                alt={meal.title}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-              <Button
-                variant="ghost"
-                size="sm"
-                className="absolute top-2 right-2 bg-white/80 hover:bg-white"
-                onClick={() => toggleFavorite(meal.id)}
-              >
-                <Heart 
-                  className={`h-4 w-4 ${
-                    favorites.includes(meal.id) 
-                      ? "fill-red-500 text-red-500" 
-                      : "text-muted-foreground"
-                  }`}
-                />
-              </Button>
-            </div>
-            
-            <CardHeader className="pb-3">
-              <div className="flex items-start justify-between">
-                <CardTitle className="text-lg">{meal.title}</CardTitle>
-                <div className="flex items-center gap-1">
-                  {getDietIcon(meal.diet)}
+          <TiltedCard 
+            key={meal.id}
+            imageSrc={meal.image}
+            altText={meal.title}
+            containerHeight="450px"
+            imageHeight="450px"
+            imageWidth="100%"
+            captionText={meal.title}
+            showMobileWarning={false}
+            scaleOnHover={1.05}
+            rotateAmplitude={8}
+            displayOverlayContent={true}
+            overlayContent={
+              <div className="absolute inset-0 bg-black/60 p-6 flex flex-col rounded-lg">
+                <div className="absolute top-2 right-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="bg-white/20 hover:bg-white/30"
+                    onClick={() => toggleFavorite(meal.id)}
+                  >
+                    <Heart 
+                      className={`h-4 w-4 ${
+                        favorites.includes(meal.id) 
+                          ? "fill-red-500 text-red-500" 
+                          : "text-white"
+                      }`}
+                    />
+                  </Button>
+                </div>
+                
+                <div className="flex items-start justify-between mb-4 mt-8">
+                  <h3 className="text-lg font-semibold text-white">{meal.title}</h3>
+                  <div className="flex items-center gap-1">
+                    {getDietIcon(meal.diet)}
+                  </div>
+                </div>
+                
+                <div className="space-y-4 flex-1">
+                  <div className="flex items-center justify-between">
+                    <Badge className={getCategoryColor(meal.category)}>
+                      {meal.category.charAt(0).toUpperCase() + meal.category.slice(1)}
+                    </Badge>
+                    <Badge variant="outline" className="capitalize border-white text-white">
+                      {meal.type}
+                    </Badge>
+                  </div>
+                  
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2">
+                      <Utensils className="h-4 w-4 text-gray-300" />
+                      <span className="text-white">{meal.calories} cal</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-gray-300" />
+                      <span className="text-white">{meal.cookTime} min</span>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <p className="text-sm text-gray-300 mb-2">Ingredients:</p>
+                    <p className="text-sm text-white">{meal.ingredients.join(", ")}</p>
+                  </div>
+                </div>
+                
+                <div className="flex gap-2 mt-4">
+                  <Button className="flex-1">View Recipe</Button>
+                  <Button variant="outline" size="sm" className="border-white text-white hover:bg-white hover:text-black">
+                    {favorites.includes(meal.id) ? "Saved" : "Save"}
+                  </Button>
                 </div>
               </div>
-            </CardHeader>
-            
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <Badge className={getCategoryColor(meal.category)}>
-                  {meal.category.charAt(0).toUpperCase() + meal.category.slice(1)}
-                </Badge>
-                <Badge variant="outline" className="capitalize">
-                  {meal.type}
-                </Badge>
-              </div>
-              
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center gap-2">
-                  <Utensils className="h-4 w-4 text-muted-foreground" />
-                  <span>{meal.calories} cal</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-muted-foreground" />
-                  <span>{meal.cookTime} min</span>
-                </div>
-              </div>
-              
-              <div>
-                <p className="text-sm text-muted-foreground mb-2">Ingredients:</p>
-                <p className="text-sm">{meal.ingredients.join(", ")}</p>
-              </div>
-              
-              <div className="flex gap-2">
-                <Button className="flex-1">View Recipe</Button>
-                <Button variant="outline" size="sm">
-                  {favorites.includes(meal.id) ? "Saved" : "Save"}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+            }
+          />
         ))}
       </div>
 

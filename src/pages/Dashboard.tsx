@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import TiltedCard from "@/components/TiltedCard";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Clock, Flame, Target, CheckCircle2, Circle } from "lucide-react";
@@ -25,84 +25,106 @@ export const Dashboard = () => {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Today's Workout Summary */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg flex items-center gap-2">
+        <TiltedCard
+          containerHeight="350px"
+          imageHeight="350px"
+          imageWidth="100%"
+          captionText="Today's Workout"
+          showMobileWarning={false}
+          scaleOnHover={1.05}
+          rotateAmplitude={8}
+        >
+          <div className="p-6 h-full flex flex-col">
+            <div className="flex items-center gap-2 mb-4">
               <Target className="h-5 w-5 text-primary" />
-              Today's Workout
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-white">Today's Workout</h3>
+            </div>
+            <div className="space-y-3 flex-1">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">Duration</span>
+                  <Clock className="h-4 w-4 text-gray-400" />
+                  <span className="text-sm text-gray-400">Duration</span>
                 </div>
-                <span className="font-medium">30 min</span>
+                <span className="font-medium text-white">30 min</span>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Target className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">Type</span>
+                  <Target className="h-4 w-4 text-gray-400" />
+                  <span className="text-sm text-gray-400">Type</span>
                 </div>
-                <span className="font-medium">Upper Body Strength</span>
+                <span className="font-medium text-white">Upper Body Strength</span>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Flame className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">Est. Calories</span>
+                  <Flame className="h-4 w-4 text-gray-400" />
+                  <span className="text-sm text-gray-400">Est. Calories</span>
                 </div>
-                <span className="font-medium">280 cal</span>
+                <span className="font-medium text-white">280 cal</span>
               </div>
             </div>
             <Button className="w-full mt-4">Start Workout</Button>
-          </CardContent>
-        </Card>
+          </div>
+        </TiltedCard>
 
         {/* Meal Plan Preview */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <img src={mealPreview} alt="Meal" className="h-5 w-5 rounded" />
-              Meal Plan
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Breakfast</span>
-                <span className="font-medium text-sm">Oatmeal Bowl</span>
+        <TiltedCard
+          imageSrc={mealPreview}
+          altText="Meal Plan"
+          containerHeight="350px"
+          imageHeight="350px"
+          imageWidth="100%"
+          captionText="Meal Plan"
+          showMobileWarning={false}
+          scaleOnHover={1.05}
+          rotateAmplitude={8}
+          displayOverlayContent={true}
+          overlayContent={
+            <div className="p-6 h-full flex flex-col bg-black/60 rounded-lg">
+              <div className="flex items-center gap-2 mb-4">
+                <img src={mealPreview} alt="Meal" className="h-5 w-5 rounded" />
+                <h3 className="text-lg font-semibold text-white">Meal Plan</h3>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Lunch</span>
-                <span className="font-medium text-sm">Chicken Salad</span>
+              <div className="space-y-3 flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-300">Breakfast</span>
+                  <span className="font-medium text-sm text-white">Oatmeal Bowl</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-300">Lunch</span>
+                  <span className="font-medium text-sm text-white">Chicken Salad</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-300">Dinner</span>
+                  <span className="font-medium text-sm text-white">Salmon & Veggies</span>
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Dinner</span>
-                <span className="font-medium text-sm">Salmon & Veggies</span>
+              <div className="pt-2 border-t border-gray-600">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-white">Total Calories</span>
+                  <span className="font-semibold text-primary">1,650 cal</span>
+                </div>
               </div>
+              <Button variant="secondary" className="w-full mt-4">View Full Plan</Button>
             </div>
-            <div className="pt-2 border-t">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Total Calories</span>
-                <span className="font-semibold text-primary">1,650 cal</span>
-              </div>
-            </div>
-            <Button variant="secondary" className="w-full">View Full Plan</Button>
-          </CardContent>
-        </Card>
+          }
+        />
 
         {/* Habit Tracker */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg flex items-center gap-2">
+        <TiltedCard
+          containerHeight="350px"
+          imageHeight="350px"
+          imageWidth="100%"
+          captionText="Daily Habits"
+          showMobileWarning={false}
+          scaleOnHover={1.05}
+          rotateAmplitude={8}
+        >
+          <div className="p-6 h-full flex flex-col">
+            <div className="flex items-center gap-2 mb-4">
               <CheckCircle2 className="h-5 w-5 text-success" />
-              Daily Habits
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Daily Habits</h3>
+            </div>
+            <div className="space-y-4 flex-1">
               <div className="flex items-center space-x-3">
                 <Checkbox
                   id="workout"
@@ -111,7 +133,7 @@ export const Dashboard = () => {
                 />
                 <label
                   htmlFor="workout"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
                 >
                   Complete workout
                 </label>
@@ -124,7 +146,7 @@ export const Dashboard = () => {
                 />
                 <label
                   htmlFor="water"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
                 >
                   Drink 8 glasses of water
                 </label>
@@ -137,22 +159,22 @@ export const Dashboard = () => {
                 />
                 <label
                   htmlFor="steps"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
                 >
                   Walk 10,000 steps
                 </label>
               </div>
             </div>
-            <div className="pt-2 border-t">
+            <div className="pt-2 border-t border-gray-600">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Progress</span>
+                <span className="text-sm font-medium text-white">Progress</span>
                 <span className="font-semibold text-success">
                   {Object.values(habits).filter(Boolean).length}/3 completed
                 </span>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </TiltedCard>
       </div>
     </div>
   );
