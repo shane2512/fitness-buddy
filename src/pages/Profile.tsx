@@ -21,7 +21,7 @@ interface UserProfile {
 export const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState<UserProfile>({
-    name: "Alex Johnson",
+    name: "Shane joans",
     age: 28,
     weight: 70,
     height: 175,
