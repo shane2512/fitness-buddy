@@ -1,73 +1,145 @@
-# Welcome to your Lovable project
 
-## Project info
+# 🏋️‍♀️ Fitness Buddy - AI Health & Fitness Coach
 
-**URL**: https://lovable.dev/projects/d75da453-a594-46c9-9827-0688c5bd540a
+**Fitness Buddy** is an AI-powered virtual health and fitness assistant that helps users maintain a healthy lifestyle by providing personalized workout suggestions, nutritional advice, motivational tips, and habit-building support—anytime, anywhere.
 
-## How can I edit this code?
+> 💡 Built using React, Tailwind CSS, IBM Watson Assistant, and IBM Cloud Functions.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🌐 Live Demo
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d75da453-a594-46c9-9827-0688c5bd540a) and start prompting.
+Coming soon...
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🎯 Problem Statement
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Modern lifestyles make it difficult for individuals to stay healthy due to:
+- Lack of personalized guidance
+- Busy schedules
+- Motivation challenges
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Fitness Buddy** solves this by offering:
+- 🤖 A smart AI chatbot for workouts, nutrition, and motivation
+- 📱 A beautiful, responsive FitOn-style frontend
+- ☁️ Serverless backend powered by IBM Cloud Lite services
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🚀 Features
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- 🧘‍♂️ Personalized workout recommendations (beginner → advanced)
+- 🥗 Healthy meal ideas and snack suggestions
+- 💬 Conversational AI assistant (Watson)
+- 📈 Habit-building encouragement and daily fitness tips
+- 💻 Responsive, mobile-first UI built with Tailwind CSS
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## 🛠️ Tech Stack
+
+| Layer         | Tech Used                            |
+|---------------|--------------------------------------|
+| Frontend      | React + Tailwind CSS                 |
+| Chatbot AI    | IBM Watson Assistant (Web Chat)      |
+| Backend (API) | IBM Cloud Functions (Node.js / Python) |
+| Hosting       | Netlify / IBM Cloud App Services     |
+
+---
+
+## 📂 Project Structure
+
+```
+fitness-buddy/
+├── public/
+│   └── index.html     # Watson Assistant script injected here
+├── src/
+│   ├── components/    # Tailwind-based UI components
+│   ├── pages/         # Pages like Home, Dashboard, etc.
+│   └── App.jsx
+├── .env               # (optional) API keys if needed
+├── README.md
+└── package.json
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔧 Setup Instructions
 
-**Use GitHub Codespaces**
+### 1. Clone the Repository
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+git clone https://github.com/jhirschv/Online-Fitness-App-Frontend.git
+cd Online-Fitness-App-Frontend
+```
 
-## What technologies are used for this project?
+### 2. Install Dependencies
 
-This project is built with:
+```bash
+npm install
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 3. Add IBM Watson Assistant Web Chat
 
-## How can I deploy this project?
+In `public/index.html`, paste the Watson Assistant integration script just before the `</body>` tag:
 
-Simply open [Lovable](https://lovable.dev/projects/d75da453-a594-46c9-9827-0688c5bd540a) and click on Share -> Publish.
+```html
+<script>
+  window.watsonAssistantChatOptions = {
+      integrationID: "YOUR_INTEGRATION_ID",
+      region: "YOUR_REGION",
+      serviceInstanceID: "YOUR_SERVICE_INSTANCE_ID",
+      onLoad: function(instance) { instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+```
 
-## Can I connect a custom domain to my Lovable project?
+### 4. Start the App
 
-Yes, you can!
+```bash
+npm run dev
+# or
+npm start
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🧠 IBM Watson Assistant Setup
+
+1. Go to [IBM Cloud](https://cloud.ibm.com/)
+2. Create a Watson Assistant service
+3. Create an Assistant + Dialog skills
+4. Train intents like:
+   - "Suggest a workout"
+   - "Give me a meal plan"
+   - "Motivate me"
+5. Deploy using **Web Chat** integration
+6. Copy credentials into your frontend `index.html`
+
+---
+
+
+
+## 📸 Screenshots
+
+> Add screenshots of your chatbot and UI here
+
+---
+
+## 📄 License
+
+MIT License — feel free to use and remix!
+
+---
+
+## 🙌 Acknowledgements
+
+- [IBM Watson Assistant](https://cloud.ibm.com/catalog/services/watson-assistant)
+- [Tailwind UI](https://tailwindui.com/)
+- [FitOn App](https://fitonapp.com/) – inspiration
