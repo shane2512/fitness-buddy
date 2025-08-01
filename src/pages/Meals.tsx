@@ -18,7 +18,7 @@ const meals = [
     cookTime: 15,
     type: "main",
     diet: "high-protein",
-    image: mealPreview,
+    image: "/lovable-uploads/c35b20ee-0b57-46d1-b304-97edb1f8c837.png",
     ingredients: ["Chicken breast", "Mixed greens", "Tomatoes", "Cucumber", "Olive oil"]
   },
   {

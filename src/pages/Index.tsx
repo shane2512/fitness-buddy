@@ -58,35 +58,49 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative px-6 lg:px-8 py-24 sm:py-32">
-        <div className="mx-auto max-w-4xl text-center">
-          <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
+      <section className="relative px-6 lg:px-8 py-32 sm:py-40">
+        <div className="mx-auto max-w-5xl text-center">
+          <Badge className="mb-8 bg-primary/10 text-primary border-primary/20 text-sm px-4 py-2">
             Your Personal Fitness Companion
           </Badge>
           
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+          <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl lg:text-8xl">
             Transform Your Fitness Journey with{" "}
-            <span className="text-primary">Fitness Buddy</span>
+            <span className="text-primary">FitLife</span>
           </h1>
           
-          <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-            Get personalized workouts, nutrition guidance, and progress tracking 
-            with our AI-powered fitness assistant. Start your transformation today.
+          <p className="mt-8 text-xl leading-9 text-muted-foreground max-w-4xl mx-auto">
+            Experience the future of fitness with personalized workouts, nutrition guidance, and AI-powered progress tracking. 
+            Your complete wellness companion designed to help you achieve lasting results and build healthy habits that stick.
           </p>
           
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <div className="mt-12 flex items-center justify-center gap-x-8 flex-col sm:flex-row">
             <Link to="/dashboard">
-              <Button size="lg" className="group">
+              <Button size="lg" className="group text-lg px-10 py-6">
                 Start Your Journey
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link to="/workouts">
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="text-lg px-10 py-6">
                 Explore Workouts
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="px-6 lg:px-8 py-20">
+        <div className="mx-auto max-w-4xl text-center space-y-8">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Why Choose FitLife?
+          </h2>
+          <p className="text-lg leading-8 text-muted-foreground">
+            FitLife combines cutting-edge AI technology with proven fitness methodologies to deliver a personalized experience 
+            that adapts to your unique goals, preferences, and lifestyle. Whether you're a beginner starting your fitness journey 
+            or an experienced athlete looking to optimize performance, our platform provides the tools and guidance you need to succeed.
+          </p>
         </div>
       </section>
 
@@ -105,31 +119,31 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 sm:py-32">
+      <section className="py-28 sm:py-36">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               Everything you need to succeed
             </h2>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              Comprehensive tools and features designed to help you achieve your fitness goals efficiently.
+            <p className="mt-8 text-xl leading-8 text-muted-foreground">
+              Comprehensive tools and features designed to help you achieve your fitness goals efficiently and sustainably.
             </p>
           </div>
           
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <div className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2 xl:grid-cols-4">
+          <div className="mx-auto mt-20 max-w-2xl sm:mt-24 lg:mt-32 lg:max-w-none">
+            <div className="grid max-w-xl grid-cols-1 gap-10 lg:max-w-none lg:grid-cols-2 xl:grid-cols-4">
               {features.map((feature, index) => (
                 <div 
                   key={index} 
-                  className="bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border/50 hover:bg-card/70 transition-colors"
+                  className="bg-card/60 backdrop-blur-sm p-8 rounded-xl border border-border/50 hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
                 >
-                  <div className="mb-4">
-                    <feature.icon className="h-8 w-8 text-primary" />
+                  <div className="mb-6">
+                    <feature.icon className="h-10 w-10 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -190,9 +204,9 @@ const Index = () => {
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
-              <Link to="/chat">
+              <Link to="/workouts">
                 <Button variant="outline" size="lg">
-                  Try AI Assistant
+                  Explore Features
                 </Button>
               </Link>
             </div>
