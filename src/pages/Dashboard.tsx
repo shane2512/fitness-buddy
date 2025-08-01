@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Dumbbell, Utensils, Droplets, Footprints, Target, Clock, Flame } from "lucide-react";
 import workoutHero from "@/assets/workout-hero.jpg";
-import mealPreview from "@/assets/meal-preview.jpg";
+import mealPreview from "@/assets/The-Best-Local-Foods-in-Hyderabad-1-hero.jpg";
 
 export const Dashboard = () => {
   const today = new Date().toLocaleDateString('en-US', { 
@@ -17,7 +17,7 @@ export const Dashboard = () => {
   return (
     <div className="space-y-6">
       <div className="text-center md:text-left">
-        <h1 className="text-3xl font-bold text-foreground">Hello, Alex</h1>
+        <h1 className="text-3xl font-bold text-foreground">Hello, SJ</h1>
         <p className="text-muted-foreground mt-1">{today}</p>
       </div>
 

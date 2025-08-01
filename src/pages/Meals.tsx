@@ -29,7 +29,7 @@ const meals = [
     cookTime: 5,
     type: "main", 
     diet: "vegetarian",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/c35b20ee-0b57-46d1-b304-97edb1f8c837.png",
     ingredients: ["Oats", "Milk", "Berries", "Honey", "Nuts"]
   },
   {
@@ -40,7 +40,7 @@ const meals = [
     cookTime: 20,
     type: "main",
     diet: "keto", 
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/c35b20ee-0b57-46d1-b304-97edb1f8c837.png",
     ingredients: ["Salmon fillet", "Quinoa", "Broccoli", "Avocado"]
   },
   {
@@ -51,7 +51,7 @@ const meals = [
     cookTime: 5,
     type: "drink",
     diet: "vegan",
-    image: "/placeholder.svg", 
+    image: "/lovable-uploads/c35b20ee-0b57-46d1-b304-97edb1f8c837.png", 
     ingredients: ["Spinach", "Banana", "Mango", "Coconut milk"]
   },
   {
@@ -62,7 +62,7 @@ const meals = [
     cookTime: 10,
     type: "main",
     diet: "high-protein",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/c35b20ee-0b57-46d1-b304-97edb1f8c837.png",
     ingredients: ["Protein powder", "Eggs", "Banana", "Oats"]
   },
   {
@@ -73,7 +73,7 @@ const meals = [
     cookTime: 25,
     type: "main", 
     diet: "vegetarian",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/c35b20ee-0b57-46d1-b304-97edb1f8c837.png",
     ingredients: ["Sweet potato", "Chickpeas", "Kale", "Tahini"]
   }
 ];
