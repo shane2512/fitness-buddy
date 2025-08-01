@@ -8,7 +8,7 @@ const springValues = {
 };
 
 export default function TiltedCard({
-  imageSrc,
+  imageSrc = null,
   altText = "Tilted card image",
   captionText = "",
   containerHeight = "300px",
@@ -21,7 +21,7 @@ export default function TiltedCard({
   showTooltip = true,
   overlayContent = null,
   displayOverlayContent = false,
-  children,
+  children = null,
   className = "",
 }) {
   const ref = useRef(null);
@@ -92,7 +92,7 @@ export default function TiltedCard({
       )}
 
       <motion.div
-        className="relative [transform-style:preserve-3d] bg-gray-900 rounded-lg border border-gray-700 shadow-lg overflow-hidden"
+        className="relative [transform-style:preserve-3d] bg-gray-900/30 backdrop-blur-sm rounded-lg border border-gray-700/50 shadow-lg overflow-hidden"
         style={{
           width: imageWidth,
           height: imageHeight,
@@ -112,7 +112,7 @@ export default function TiltedCard({
             }}
           />
         ) : (
-          <div className="absolute top-0 left-0 w-full h-full bg-gray-800 rounded-[15px] will-change-transform [transform:translateZ(0)]">
+          <div className="absolute top-0 left-0 w-full h-full bg-gray-800/40 backdrop-blur-sm rounded-[15px] will-change-transform [transform:translateZ(0)]">
             {children}
           </div>
         )}

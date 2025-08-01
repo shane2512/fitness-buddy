@@ -1,115 +1,95 @@
+import { useState } from "react";
 import TiltedCard from "@/components/TiltedCard";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Heart, Utensils, Leaf, Fish } from "lucide-react";
-import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Heart, Utensils, Clock, Leaf, Fish, Beef } from "lucide-react";
 import mealPreview from "@/assets/meal-preview.jpg";
 
-interface Meal {
-  id: string;
-  title: string;
-  calories: number;
-  cookTime: number;
-  type: "breakfast" | "lunch" | "dinner" | "snack";
-  diet: "vegetarian" | "non-vegetarian" | "vegan";
-  category: "low-carb" | "high-protein" | "balanced" | "keto";
-  ingredients: string[];
-  image: string;
-  isFavorite: boolean;
-}
+const mealCategories = ["all", "breakfast", "lunch", "dinner", "snack"];
+const dietTypes = ["all", "vegetarian", "vegan", "keto", "high-protein"];
 
-const meals: Meal[] = [
+const meals = [
   {
-    id: "1",
-    title: "Protein-Packed Oatmeal Bowl",
-    calories: 320,
-    cookTime: 10,
-    type: "breakfast",
-    diet: "vegetarian",
-    category: "high-protein",
-    ingredients: ["Oats", "Greek yogurt", "Berries", "Almonds", "Honey"],
-    image: mealPreview,
-    isFavorite: false
-  },
-  {
-    id: "2",
+    id: 1,
     title: "Grilled Chicken Salad",
-    calories: 285,
-    cookTime: 15,
-    type: "lunch",
-    diet: "non-vegetarian",
-    category: "low-carb",
-    ingredients: ["Chicken breast", "Mixed greens", "Cherry tomatoes", "Cucumber", "Olive oil"],
-    image: mealPreview,
-    isFavorite: true
-  },
-  {
-    id: "3",
-    title: "Salmon with Roasted Vegetables",
-    calories: 420,
-    cookTime: 25,
-    type: "dinner",
-    diet: "non-vegetarian",
-    category: "balanced",
-    ingredients: ["Salmon fillet", "Broccoli", "Sweet potato", "Bell peppers", "Herbs"],
-    image: mealPreview,
-    isFavorite: false
-  },
-  {
-    id: "4",
-    title: "Quinoa Buddha Bowl",
+    category: "lunch", 
     calories: 350,
-    cookTime: 20,
-    type: "lunch",
-    diet: "vegan",
-    category: "high-protein",
-    ingredients: ["Quinoa", "Chickpeas", "Avocado", "Kale", "Tahini dressing"],
+    cookTime: 15,
+    type: "main",
+    diet: "high-protein",
     image: mealPreview,
-    isFavorite: true
+    ingredients: ["Chicken breast", "Mixed greens", "Tomatoes", "Cucumber", "Olive oil"]
   },
   {
-    id: "5",
-    title: "Greek Yogurt Parfait",
+    id: 2,
+    title: "Overnight Oats",
+    category: "breakfast",
+    calories: 280,
+    cookTime: 5,
+    type: "main", 
+    diet: "vegetarian",
+    image: "/placeholder.svg",
+    ingredients: ["Oats", "Milk", "Berries", "Honey", "Nuts"]
+  },
+  {
+    id: 3,
+    title: "Salmon Bowl",
+    category: "dinner",
+    calories: 450,
+    cookTime: 20,
+    type: "main",
+    diet: "keto", 
+    image: "/placeholder.svg",
+    ingredients: ["Salmon fillet", "Quinoa", "Broccoli", "Avocado"]
+  },
+  {
+    id: 4,
+    title: "Green Smoothie",
+    category: "snack",
     calories: 180,
     cookTime: 5,
-    type: "snack",
-    diet: "vegetarian",
-    category: "high-protein",
-    ingredients: ["Greek yogurt", "Granola", "Fresh berries", "Honey"],
-    image: mealPreview,
-    isFavorite: false
+    type: "drink",
+    diet: "vegan",
+    image: "/placeholder.svg", 
+    ingredients: ["Spinach", "Banana", "Mango", "Coconut milk"]
   },
   {
-    id: "6",
-    title: "Keto Cauliflower Rice Bowl",
-    calories: 240,
-    cookTime: 18,
-    type: "dinner",
+    id: 5,
+    title: "Protein Pancakes",
+    category: "breakfast",
+    calories: 320,
+    cookTime: 10,
+    type: "main",
+    diet: "high-protein",
+    image: "/placeholder.svg",
+    ingredients: ["Protein powder", "Eggs", "Banana", "Oats"]
+  },
+  {
+    id: 6,
+    title: "Buddha Bowl",
+    category: "lunch",
+    calories: 400,
+    cookTime: 25,
+    type: "main", 
     diet: "vegetarian",
-    category: "keto",
-    ingredients: ["Cauliflower rice", "Avocado", "Cheese", "Nuts", "Olive oil"],
-    image: mealPreview,
-    isFavorite: false
+    image: "/placeholder.svg",
+    ingredients: ["Sweet potato", "Chickpeas", "Kale", "Tahini"]
   }
 ];
 
 export const Meals = () => {
-  const [mealType, setMealType] = useState<string>("all");
-  const [dietFilter, setDietFilter] = useState<string>("all");
-  const [categoryFilter, setCategoryFilter] = useState<string>("all");
-  const [favorites, setFavorites] = useState<string[]>(
-    meals.filter(meal => meal.isFavorite).map(meal => meal.id)
-  );
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedDiet, setSelectedDiet] = useState("all");
+  const [favorites, setFavorites] = useState<number[]>([]);
 
   const filteredMeals = meals.filter(meal => {
-    if (mealType !== "all" && meal.type !== mealType) return false;
-    if (dietFilter !== "all" && meal.diet !== dietFilter) return false;
-    if (categoryFilter !== "all" && meal.category !== categoryFilter) return false;
-    return true;
+    const categoryMatch = selectedCategory === "all" || meal.category === selectedCategory;
+    const dietMatch = selectedDiet === "all" || meal.diet === selectedDiet;
+    return categoryMatch && dietMatch;
   });
 
-  const toggleFavorite = (mealId: string) => {
+  const toggleFavorite = (mealId: number) => {
     setFavorites(prev => 
       prev.includes(mealId) 
         ? prev.filter(id => id !== mealId)
@@ -119,84 +99,69 @@ export const Meals = () => {
 
   const getDietIcon = (diet: string) => {
     switch (diet) {
-      case "vegetarian": return <Leaf className="h-4 w-4 text-green-600" />;
-      case "vegan": return <Leaf className="h-4 w-4 text-green-700" />;
-      case "non-vegetarian": return <Fish className="h-4 w-4 text-blue-600" />;
-      default: return null;
+      case "vegetarian":
+        return <Leaf className="h-4 w-4 text-green-500" />;
+      case "vegan":
+        return <Leaf className="h-4 w-4 text-green-600" />;
+      case "keto":
+        return <Fish className="h-4 w-4 text-blue-500" />;
+      case "high-protein":
+        return <Beef className="h-4 w-4 text-red-500" />;
+      default:
+        return null;
     }
   };
 
   const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "low-carb": return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
-      case "high-protein": return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200";
-      case "balanced": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
-      case "keto": return "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200";
-      default: return "bg-muted text-muted-foreground";
-    }
+    const colors = {
+      breakfast: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+      lunch: "bg-blue-500/20 text-blue-400 border-blue-500/30", 
+      dinner: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+      snack: "bg-green-500/20 text-green-400 border-green-500/30"
+    };
+    return colors[category as keyof typeof colors] || "bg-gray-500/20 text-gray-400";
   };
 
   return (
     <div className="space-y-6">
       <div className="text-center md:text-left">
         <h1 className="text-3xl font-bold text-foreground">Meal Suggestions</h1>
-        <p className="text-muted-foreground mt-2">Discover healthy and delicious meal ideas</p>
+        <p className="text-muted-foreground mt-2">Discover healthy recipes tailored to your goals</p>
       </div>
 
-      {/* Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Select value={mealType} onValueChange={setMealType}>
-          <SelectTrigger>
-            <SelectValue placeholder="Meal Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Meals</SelectItem>
-            <SelectItem value="breakfast">Breakfast</SelectItem>
-            <SelectItem value="lunch">Lunch</SelectItem>
-            <SelectItem value="dinner">Dinner</SelectItem>
-            <SelectItem value="snack">Snacks</SelectItem>
-          </SelectContent>
-        </Select>
+      {/* Filter Tabs */}
+      <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
+        <TabsList className="grid w-full grid-cols-5">
+          {mealCategories.map((category) => (
+            <TabsTrigger key={category} value={category} className="capitalize">
+              {category === "all" ? "All Meals" : category}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
 
-        <Select value={dietFilter} onValueChange={setDietFilter}>
-          <SelectTrigger>
-            <SelectValue placeholder="Diet Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Diets</SelectItem>
-            <SelectItem value="vegetarian">Vegetarian</SelectItem>
-            <SelectItem value="vegan">Vegan</SelectItem>
-            <SelectItem value="non-vegetarian">Non-Vegetarian</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-          <SelectTrigger>
-            <SelectValue placeholder="Category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Categories</SelectItem>
-            <SelectItem value="low-carb">Low-Carb</SelectItem>
-            <SelectItem value="high-protein">High-Protein</SelectItem>
-            <SelectItem value="balanced">Balanced</SelectItem>
-            <SelectItem value="keto">Keto</SelectItem>
-          </SelectContent>
-        </Select>
+      {/* Diet Filter */}
+      <div className="flex flex-wrap gap-2">
+        <span className="text-sm text-muted-foreground mr-2">Diet:</span>
+        {dietTypes.map((diet) => (
+          <Button
+            key={diet}
+            variant={selectedDiet === diet ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSelectedDiet(diet)}
+            className="capitalize"
+          >
+            {diet === "all" ? "All" : diet.replace("-", " ")}
+          </Button>
+        ))}
       </div>
 
-      {/* Clear Filters */}
-      {(mealType !== "all" || dietFilter !== "all" || categoryFilter !== "all") && (
-        <Button
-          variant="outline"
-          onClick={() => {
-            setMealType("all");
-            setDietFilter("all");
-            setCategoryFilter("all");
-          }}
-        >
-          Clear All Filters
-        </Button>
-      )}
+      {/* Meal Count */}
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-muted-foreground">
+          Showing {filteredMeals.length} meal{filteredMeals.length !== 1 ? 's' : ''}
+        </p>
+      </div>
 
       {/* Meal Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -280,18 +245,11 @@ export const Meals = () => {
 
       {filteredMeals.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-muted-foreground">No meals found with current filters.</p>
-          <Button
-            variant="outline"
-            className="mt-4"
-            onClick={() => {
-              setMealType("all");
-              setDietFilter("all");
-              setCategoryFilter("all");
-            }}
-          >
-            Clear All Filters
-          </Button>
+          <Utensils className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-foreground mb-2">No meals found</h3>
+          <p className="text-muted-foreground">
+            Try adjusting your filters to see more meal options.
+          </p>
         </div>
       )}
     </div>
