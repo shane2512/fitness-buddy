@@ -7,7 +7,6 @@ export const Navigation = () => {
     { to: "/", icon: Home, label: "Home" },
     { to: "/workouts", icon: Dumbbell, label: "Workouts" },
     { to: "/meals", icon: Utensils, label: "Meals" },
-    { to: "/chat", icon: MessageCircle, label: "Chat" },
     { to: "/profile", icon: User, label: "Profile" },
   ];
 
