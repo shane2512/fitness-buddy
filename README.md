@@ -1,6 +1,4 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
 
-# this is existing redme
 
 # 🏋️‍♀️ Fitness Buddy - AI Health \& Fitness Coach
 
@@ -11,8 +9,8 @@
 ---
 
 ## 🌐 Live Demo
-
-Coming soon...
+[
+FIT BUDDY](https://fit-buddy1.netlify.app/)
 
 ---
 
