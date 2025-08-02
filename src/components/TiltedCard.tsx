@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+// Fixed export issue for TiltedCard component
 
 const springValues = {
   damping: 30,
