@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Home, Dumbbell, Utensils, MessageCircle, User } from "lucide-react";
+import { Home, Dumbbell, Utensils, MessageCircle, User, Bot } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Navigation = () => {
@@ -7,6 +7,7 @@ export const Navigation = () => {
     { to: "/", icon: Home, label: "Home" },
     { to: "/workouts", icon: Dumbbell, label: "Workouts" },
     { to: "/meals", icon: Utensils, label: "Meals" },
+    { to: "/ai-chat", icon: Bot, label: "AI Chat" },
     { to: "/profile", icon: User, label: "Profile" },
   ];
 

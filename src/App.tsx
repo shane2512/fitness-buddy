@@ -7,6 +7,7 @@ import { Layout } from "./components/Layout";
 import { Dashboard } from "./pages/Dashboard";
 import { Workouts } from "./pages/Workouts";
 import { Meals } from "./pages/Meals";
+import { AIChat } from "./pages/AIChat";
 import { Profile } from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ const App = () => (
             <Route index element={<Dashboard />} />
             <Route path="workouts" element={<Workouts />} />
             <Route path="meals" element={<Meals />} />
+            <Route path="ai-chat" element={<AIChat />} />
             <Route path="profile" element={<Profile />} />
           </Route>
           <Route path="*" element={<NotFound />} />
